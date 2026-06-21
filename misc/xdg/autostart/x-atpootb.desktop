@@ -1,5 +1,5 @@
 [Desktop Entry]
-Exec=atpootb
+Exec=/usr/bin/atpootb
 Name=AeroThemePlasma OOTB Experience
 Terminal=false
 Type=Application

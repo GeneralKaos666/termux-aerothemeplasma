@@ -15,12 +15,8 @@ set(atpootb_SRCS
     app.cpp
     effectsmodel.cpp
 )
-find_file(KWIN_EFFECTS_XML
-    NAMES org.kde.kwin.Effects.xml kwin_x11_org.kde.kwin.Effects.xml
-    PATHS ${CMAKE_INSTALL_PREFIX}/share/dbus-1/interfaces/
-)
 qt_add_dbus_interface(atpootb_SRCS
-    ${KWIN_EFFECTS_XML} kwin_effects_interface
+    ${CMAKE_INSTALL_PREFIX}/share/dbus-1/interfaces/org.kde.kwin.Effects.xml kwin_effects_interface
 )
 
 target_sources(atpootb_static PUBLIC
@@ -50,6 +46,6 @@ target_link_libraries(atpootb_static PUBLIC Qt::Widgets)
 kconfig_add_kcfg_files(atpootb_static GENERATE_MOC atpootbconfig.kcfgc)
 
 # Target: main executable
-add_executable(atpootb main.cpp contents/ui/assets.qrc)
+qt_add_executable(atpootb main.cpp contents/ui/assets.qrc)
 target_link_libraries(atpootb PUBLIC atpootb_static atpootb_staticplugin)
-install(TARGETS atpootb DESTINATION ${KDE_INSTALL_BINDIR})
+install(TARGETS atpootb ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
