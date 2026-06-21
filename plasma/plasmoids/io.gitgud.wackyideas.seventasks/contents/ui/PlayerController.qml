@@ -18,8 +18,6 @@ import org.kde.plasma.private.mpris as Mpris
 
 RowLayout {
     readonly property bool isPlaying: root.playerData.playbackStatus === Mpris.PlaybackStatus.Playing
-    readonly property bool hasAudioStream: root.parentTask ? root.parentTask.hasAudioStream : false
-    readonly property bool muted: root.parentTask ? root.parentTask.muted : false
 
     spacing: 0
 
@@ -50,7 +48,7 @@ RowLayout {
     }
     MediaButton {
         id: skipBtn
-        orientation: muteBtn.visible ? "center" : "right"
+        orientation: Plasmoid.configuration.showMuteBtn ? "center" : "right"
         mediaIcon: "skip"
         onClicked: root.playerData.Next();
         enableButton: root.playerData.canGoNext
@@ -60,11 +58,11 @@ RowLayout {
     MediaButton {
         id: muteBtn
         orientation: "right"
-        mediaIcon: muted ? "unmute" : "mute"
+        mediaIcon: root.parentTask.muted ? "unmute" : "mute"
         onClicked: root.parentTask.toggleMuted();
         enableButton: visible
-        visible: Plasmoid.configuration.showMuteBtn && hasAudioStream
-        iconWidth: muted ? 16 : 17
+        visible: Plasmoid.configuration.showMuteBtn
+        iconWidth: root.parentTask.muted ? 16 : 17
         iconHeight: 14
     }
     Item {
