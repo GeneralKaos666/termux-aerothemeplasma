@@ -29,3 +29,15 @@ experimental/
 build
 repos
 manifest
+CMakeCache.txt
+prefix.sh
+plasma/sddm/login-sessions/startatp-wayland
+plasma/sddm
+plasma/atpootb
+plasma/CMakeFiles/4.3.4/CompilerIdCXX
+plasma/CMakeFiles/4.3.4/CompilerIdC
+plasma
+CMakeFiles/FindOpenMP
+CMakeFiles/4.3.4/CompilerIdCXX
+CMakeFiles
+ecm_uninstall.cmake
