@@ -142,7 +142,11 @@ if [[ "${TERMUX_INSTALL}" -eq 1 ]]; then
 fi
 bash install.sh "$@"
 cp build/install_manifest.txt "$CUR_DIR/manifest/smod_install_manifest.txt"
-cp smodglow/build-wl/install_manifest.txt "$CUR_DIR/manifest/smodglow_install_manifest.txt"
+
+if [[ ! "$*" == *"--skip-wayland"* ]]
+then
+    cp smodglow/build-wl/install_manifest.txt "$CUR_DIR/manifest/smodglow_install_manifest.txt"
+fi
 
 if [[ ! "$*" == *"--skip-x11"* ]]
 then
@@ -162,6 +166,7 @@ fi
 cp build/install_manifest.txt "$CUR_DIR/manifest/aeroshell-workspace_install_manifest.txt"
 cd "$CUR_DIR/repos"
 
+if [[ ! "$*" == *"--skip-wayland"* ]]; then
 # Aeroshell KWin
 clone_or_update_repo https://gitgud.io/aeroshell/aeroshell-kwin-components.git aeroshell-kwin-components
 cd aeroshell-kwin-components
@@ -177,6 +182,7 @@ then
     cp build_x11/install_manifest.txt "$CUR_DIR/manifest/aeroshell-kwin-components-x11_install_manifest.txt"
 fi
 cd "$CUR_DIR/repos"
+fi
 
 # Aeroshell SDDM KCM
 clone_or_update_repo https://gitgud.io/aeroshell/aeroshell-sddm-kcm.git aeroshell-sddm-kcm
